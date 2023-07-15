@@ -1,5 +1,7 @@
 #!/usr/bin/python3
 def new_in_list(my_list, idx, element):
+    if not my_list:
+        return
     for i in my_list:
         # this_list = my_list.copy()
         this_list = my_list[:]
