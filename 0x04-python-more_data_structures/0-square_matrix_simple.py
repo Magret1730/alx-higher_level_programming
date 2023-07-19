@@ -1,14 +1,14 @@
 #!/usr/bin/python3
 def square_matrix_simple(matrix=[]):
     if matrix is None:
-        return None
+        return matrix
     if matrix:
         for row in matrix:
             if len(row) != len(matrix):
                 return None
         return [[element ** 2 for element in row] for row in matrix]
     else:
-        return None
+        return matrix
 
 # def square_matrix_simple(matrix=[]):
 #    if matrix is None:
