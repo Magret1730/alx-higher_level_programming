@@ -5,5 +5,3 @@ def square_matrix_simple(matrix=[]):
             if len(row) != len(matrix):
                 return matrix
         return [[element ** 2 for element in row] for row in matrix]
-    else:
-        return matrix
