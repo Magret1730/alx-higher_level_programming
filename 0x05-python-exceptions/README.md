@@ -1,6 +1,6 @@
 0x05. Python - Exceptions
 
-Learning:
+Learning
 1. Why Python programming is awesome
 2. What’s the difference between errors and exceptions
 3. What are exceptions and how to use them
@@ -9,4 +9,3 @@ Learning:
 6. What’s the purpose of catching exceptions
 7. How to raise a builtin exception
 8. When do we need to implement a clean-up action after an exception
-
