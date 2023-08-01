@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""Square module"""
+"""A Square class"""
 
 
 class Square:
@@ -7,4 +7,4 @@ class Square:
 
     def __init__(self, size):
         """a module with private instance attribute size"""
-        self.__size__ = size
+        self.__size = size
