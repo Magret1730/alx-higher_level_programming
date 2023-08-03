@@ -1,6 +1,6 @@
 0x07. Python - Test-driven development
 
-The goal of this topic is to learn:
+The goal of this topic is to learn
 1. Why Python programming is awesome
 2. What’s an interactive test
 3. Why tests are important
