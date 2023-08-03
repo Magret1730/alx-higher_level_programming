@@ -105,5 +105,3 @@ OverflowError: cannot convert float infinity to integer
 >>> add_integer(float("nan"), 4)
 Traceback (most recent call last):
 ValueError: cannot convert float NaN to integer
-
-

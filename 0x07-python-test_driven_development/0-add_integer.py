@@ -1,15 +1,14 @@
 #!/usr/bin/python3
-"""function that adds 2 integers"""
+"""
+function that adds 2 integers
+
+and returns the summation of the two integers
+"""
 
 
 def add_integer(a, b=98):
     """function that adds 2 integers.
-
-    Args:
-    a: first integer
-    b: second integer with a constant value 98
-
-    return: the integer of the summation of a and b
+        the integer of the summation of a and b
     """
 
     if not isinstance(a, (int, float)):
