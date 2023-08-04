@@ -1,27 +1,108 @@
 Importing module
-text_indentation = __import__('5-text_indentation').text_indentation
+>>> text_indentation = __import__('5-text_indentation').text_indentation
 
 
 TESTS
-for strings
-text = "Hello there. How are you? I hope you're doing well. Let's\
-       meet up tomorrow: same time, same place?"
->>> text_indentation("Hello there. How are you? I hope you're doing well. Let's\
-meet up tomorrow: same time, same place?")
+# for strings
+>>> text_indentation("Hello there. How are you? I hope you're doing well. \
+... Let's meet up tomorrow: same time, same place?")
+Hello there.
+<BLANKLINE>
+How are you?
+<BLANKLINE>
+I hope you're doing well.
+<BLANKLINE>
+Let's meet up tomorrow:
+<BLANKLINE>
+same time, same place?
+
+# for integers and floats
+>>> text_indentation("Come to my house by 9am. Can you hear me? \
+... When coming, come with that 5.5L of kerosene. Thanks")
+Come to my house by 9am.
+<BLANKLINE>
+Can you hear me?
+<BLANKLINE>
+When coming, come with that 5.
+<BLANKLINE>
+5L of kerosene.
+<BLANKLINE>
+Thanks
+
+# for special characters
+>>> text_indentation("@#?$%  *& None nan, inf float(). int():")
+@#?
+<BLANKLINE>
+$%  *& None nan, inf float().
+<BLANKLINE>
+int():
+
+# empty text
+>>> text_indentation()
+Traceback (most recent call last):
+TypeError: text_indentation() missing 1 required positional argument: 'text'
+
+# empty string ("")
+>>> text_indentation("")
+
+# string without quotes
+>>> text_indentation(Good job Ogooluwa. You are the best.)
+Traceback (most recent call last):
+SyntaxError: invalid syntax. Perhaps you forgot a comma?
+
+# for the delimeters in the question
+>>> text_indentation(".,?:")
+.
+<BLANKLINE>
+,?
+<BLANKLINE>
+:
+
+# without any delimeter
+>>> text_indentation("My God is good all the time Are you on the same page with Jesus \
+... Please live your life for Him")
+My God is good all the time Are you on the same page with Jesus Please live your life for Him
+
+# with spaces
+>>> text_indentation("Good job!           ")
+Good job!
+
+# with spaces
+>>> text_indentation("          Good job!           ")
+Good job!
+
+# with spaces
+>>> text_indentation("          Good job!")
+Good job!
+
+# with int and float only
+>>> text_indentation(4567)
+Traceback (most recent call last):
+TypeError: text must be a string
+
+# with newline
+>>> text_indentation("\n")
+
+# with newline
+>>> text_indentation(\n)
+Traceback (most recent call last):
+SyntaxError: unexpected character after line continuation character
 
 
-for integers and floats
+# with multiple newlines
+>>> text_indentation("\n\n\n")
+<BLANKLINE>
 
-for special characters
+# multiple delimeters
+>>> text_indentation("Hello?? Who is at home.. Can I come in?")
+Hello?
+<BLANKLINE>
+?
+<BLANKLINE>
+Who is at home.
+<BLANKLINE>
+.
+<BLANKLINE>
+Can I come in?
 
-empty text
-
-for the delimeters in the question
-
-without any delimeter
-
-with other delimeters not in the question
-
-for capial letters
-
-for only the delimeters (., ? and :)
+# End
