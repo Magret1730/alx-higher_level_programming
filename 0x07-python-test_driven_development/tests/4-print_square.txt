@@ -1,0 +1,82 @@
+Importing module
+>>> print_square = __import__('4-print_square').print_square
+
+normal test
+>>> print_square(2)
+##
+##
+
+test for zero
+>>> print_square(0)
+
+more than 2 argument
+>>> print_square(4, 7)
+Traceback (most recent call last):
+TypeError: print_square() takes 1 positional argument but 2 were given
+
+Test for float
+>>> print_square(2.676)
+Traceback (most recent call last):
+TypeError: size must be an integer
+
+Test for float
+>>> print_square(float(4))
+Traceback (most recent call last):
+TypeError: size must be an integer
+
+Test for int()
+>>> print_square(int(4))
+####
+####
+####
+####
+
+test for negative
+>>> print_square(-2)
+Traceback (most recent call last):
+ValueError: size must be >= 0
+
+test for string
+>>> print_square("Fat")
+Traceback (most recent call last):
+TypeError: size must be an integer
+
+size is float and less than o
+>>> print_square(-3.6)
+Traceback (most recent call last):
+TypeError: size must be an integer
+
+empty test
+>>> print_square()
+Traceback (most recent call last):
+TypeError: print_square() missing 1 required positional argument: 'size'
+
+test for list
+>>> print_square([])
+Traceback (most recent call last):
+TypeError: size must be an integer
+
+test for special characters
+>>> print_square(@)
+Traceback (most recent call last):
+SyntaxError: invalid syntax
+
+test for large number
+>>> print_square(1e987)
+Traceback (most recent call last):
+TypeError: size must be an integer
+
+test for None
+>>> print_square(None)
+Traceback (most recent call last):
+TypeError: size must be an integer
+
+test for Null
+>>> print_square(NULL)
+Traceback (most recent call last):
+NameError: name 'NULL' is not defined
+
+test for NaN
+>>> print_square(nan)
+Traceback (most recent call last):
+NameError: name 'nan' is not defined
