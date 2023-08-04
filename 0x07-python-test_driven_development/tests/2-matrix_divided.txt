@@ -1,0 +1,244 @@
+# Importing module
+>>> matrix_divided = __import__('2-matrix_divided').matrix_divided
+
+
+# Test with correct length of rows and columns and vice-versa
+>>> matrix_divided([[1, 2, 3], [4, 5]], 2)
+Traceback (most recent call last):
+...
+TypeError: Each row of the matrix must have the same size
+
+
+
+# with one element
+>>> matrix_divided([[2]], 2)
+[[1.0]]
+
+
+# Test with a set
+# with set
+>>> matrix_divided(([1, 2, 3], [4, 5, 0]), 2)
+Traceback (most recent call last):
+...
+TypeError: matrix must be a matrix (list of lists) of integers/floats
+
+# with set
+>>> matrix_divided([(1, 2), (3, 4), 2])
+Traceback (most recent call last):
+...
+TypeError: matrix_divided() missing 1 required positional argument: 'div'
+
+# with set
+>>> matrix_divided[[1, 2], [2, 3], 2]
+Traceback (most recent call last):
+...
+TypeError: 'function' object is not subscriptable
+
+# with dict
+>>> matrix_divided({[1, 2, 3], [4, 5, 0]}, 2)
+Traceback (most recent call last):
+...
+TypeError: unhashable type: 'list'
+
+# with dict
+>>> matrix_divided([{1, 2}, {3, 4}, 2])
+Traceback (most recent call last):
+...
+TypeError: matrix_divided() missing 1 required positional argument: 'div'
+
+# with dict
+>>> matrix_divided{[1, 2], [2, 3], 2}
+Traceback (most recent call last):
+...
+SyntaxError: invalid syntax
+
+
+# wrong parenthesis   ...task0
+# outer parenthesis
+>>> matrix_divided([1, 2], [3, 4], 2]
+Traceback (most recent call last):
+...
+SyntaxError: closing parenthesis ']' does not match opening parenthesis '('
+
+# inner parenthesis
+>>> matrix_divided((1, 2], [4, 6], 2)
+Traceback (most recent call last):
+...
+SyntaxError: closing parenthesis ']' does not match opening parenthesis '('
+
+# Test with matrix as int or float
+# int
+>>> matrix_divided([[1, 2, 3], [4, 5, 6]], 3)
+[[0.33, 0.67, 1.0], [1.33, 1.67, 2.0]]
+
+# float
+>>> matrix_divided([[1.67, 2.0987, 3], [4, 5.1, 6]], 3)
+[[0.56, 0.7, 1.0], [1.33, 1.7, 2.0]]
+
+
+
+
+# Test with div as zero, negative values, positive value
+>>> matrix_divided([[1, -2, 3], [4, 5, -6]], 3)
+[[0.33, -0.67, 1.0], [1.33, 1.67, -2.0]]
+
+# all negative
+>>> matrix_divided([[-1, -2, -3], [-4, -5, -6]], -3)
+[[0.33, 0.67, 1.0], [1.33, 1.67, 2.0]]
+
+# Test for large numbers both positive and negative
+# large numbers positive
+>>> matrix_divided([[1, -1e5000, 3], [4, 5, 3e345]], 3)
+[[0.33, -inf, 1.0], [1.33, 1.67, inf]]
+
+# large numbers negative
+>>> matrix_divided([[1, 1e5000, 3], [4, 5, -3e345]], 3)
+[[0.33, inf, 1.0], [1.33, 1.67, -inf]]
+
+# positive infinity
+matrix_divided([[1, 2, 3], [4, 5, inf]], 3)
+Traceback (most recent call last):
+...
+NameError: name 'inf' is not defined. Did you mean: 'int'?
+
+# negative infinity
+# >>> matrix_divided([[1, 2, 3], [4, 5, -inf]], 3)
+# Traceback (most recent call last):
+# ...
+# NameError: name 'inf' is not defined. Did you mean: 'int'?
+
+# NaN
+>>> matrix_divided([[NaN, 2, 3], [4, 5, 6]], 3)
+Traceback (most recent call last):
+...
+NameError: name 'NaN' is not defined
+
+# "nan"
+>>> matrix_divided([[float("nan"), 2, 3], [4, 5, 6]], 3)
+[[nan, 0.67, 1.0], [1.33, 1.67, 2.0]]
+
+
+
+
+# Test for strings, character, special characters in matrix and div
+# Testing with "None"
+>>> matrix_divided([["None", 2, 3], [4, 5, 6]], 3)
+Traceback (most recent call last):
+...
+TypeError: matrix must be a matrix (list of lists) of integers/floats
+
+# None as string
+>>> matrix_divided([[None, 2, 3], [4, 5, 6]], 3)
+Traceback (most recent call last):
+...
+TypeError: matrix must be a matrix (list of lists) of integers/floats
+
+# character
+>>> matrix_divided([[a, 2, 3], [4, 5, 6]], 3)
+Traceback (most recent call last):
+...
+NameError: name 'a' is not defined
+
+# special characters
+>>> matrix_divided([[1, 2, 3], [4, 5, @]], 3)
+Traceback (most recent call last):
+...
+SyntaxError: invalid syntax
+
+
+
+
+# Test for empty matrix and div
+# empty matrix
+>>> matrix_divided(2)
+Traceback (most recent call last):
+...
+TypeError: matrix_divided() missing 1 required positional argument: 'div'
+
+# empty matrix with comma
+>>> matrix_divided(,2)
+Traceback (most recent call last):
+...
+SyntaxError: invalid syntax
+
+# no parameter passed
+>>> matrix_divided()
+Traceback (most recent call last):
+...
+TypeError: matrix_divided() missing 2 required positional arguments: 'matrix' and 'div'
+
+
+
+# Test for import modules ...task0
+
+# Syntax errors
+>>> matrix_divided([[1, 2], [3,          4]], 2)
+[[0.5, 1.0], [1.5, 2.0]]
+
+
+
+
+# div
+# empty div
+>>> matrix_divided([[1, 2], [3, 4]])
+Traceback (most recent call last):
+...
+TypeError: matrix_divided() missing 1 required positional argument: 'div'
+
+# empty div with comma
+>>> matrix_divided([[1, 2], [3, 4]],)
+Traceback (most recent call last):
+...
+TypeError: matrix_divided() missing 1 required positional argument: 'div'
+
+# strings as div
+>>> matrix_divided([[1, 2], [3, 4]], "get")
+Traceback (most recent call last):
+...
+TypeError: div must be a number
+
+# strings
+# >>> matrix_divided([[1, 2], [3, 4]], get)
+# Traceback (most recent call last):
+# ...
+# NameError: name 'get' is not defined. Did you mean: 'set'?
+
+#special characters
+>>> matrix_divided([[1, 2], [3, 4]], @)
+Traceback (most recent call last):
+...
+SyntaxError: invalid syntax
+
+# negative value as div
+>>> matrix_divided([[1, 2], [3, 4]], -2)
+[[-0.5, -1.0], [-1.5, -2.0]]
+
+# negative matrix positive index
+>>> matrix_divided([[-1, -2, -3], [-4, -5, -6]], 3)
+[[-0.33, -0.67, -1.0], [-1.33, -1.67, -2.0]]
+
+# large number as div
+>>> matrix_divided([[1, 2], [3, 4e987666666]], 1e3654)
+[[0.0, 0.0], [0.0, nan]]
+
+# large number
+>>> matrix_divided([[1, 2], [3, 4987666666]], 1e3)
+[[0.0, 0.0], [0.0, 4987666.67]]
+
+# large number
+>>> matrix_divided([[1, 2], [3, 4]], -1e3435)
+[[-0.0, -0.0], [-0.0, -0.0]]
+
+# zero as div
+>>> matrix_divided([[1, 2], [3, 4]], 0)
+Traceback (most recent call last):
+...
+ZeroDivisionError: division by zero
+
+# float("inf") as div
+>>> matrix_divided([[1, 2], [3, 4]], float('inf'))
+[[0.0, 0.0], [0.0, 0.0]]
+
+# float("nan") as div
+>>> matrix_divided([[1, 2], [3, 4]], float('nan'))
+[[nan, nan], [nan, nan]]
