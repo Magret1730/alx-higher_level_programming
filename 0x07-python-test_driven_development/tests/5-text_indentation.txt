@@ -2,3 +2,26 @@ Importing module
 text_indentation = __import__('5-text_indentation').text_indentation
 
 
+TESTS
+for strings
+text = "Hello there. How are you? I hope you're doing well. Let's\
+       meet up tomorrow: same time, same place?"
+>>> text_indentation("Hello there. How are you? I hope you're doing well. Let's\
+meet up tomorrow: same time, same place?")
+
+
+for integers and floats
+
+for special characters
+
+empty text
+
+for the delimeters in the question
+
+without any delimeter
+
+with other delimeters not in the question
+
+for capial letters
+
+for only the delimeters (., ? and :)
