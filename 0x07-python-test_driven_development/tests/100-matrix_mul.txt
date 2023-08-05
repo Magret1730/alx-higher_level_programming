@@ -1,0 +1,130 @@
+Importing module
+>>> matrix_mul = __import__('100-matrix_mul').matrix_mul
+
+Tests
+# Normal tests
+>>> matrix_mul([[4, 5], [9, 4]], [[3, 1], [7, 54]])
+[[47, 274], [55, 225]]
+
+# negative values
+>>> matrix_mul([[1, -2], [-3, 4]], [[-1, 2], [3, -4]])
+[[-7, 10], [15, -22]]
+
+# large values
+>>> matrix_mul([[1e10, 2e10], [3e10, 4e10]], [[1e10, 2e10], [3e10, 4e10]])
+[[7e+20, 1e+21], [1.5e+21, 2.2e+21]]
+
+# rubbish input as special character
+>>> matrix_mul(@#$%)
+Traceback (most recent call last):
+SyntaxError: invalid syntax
+
+# if m_a is not a list
+>>> matrix_mul(([6, 7], [7, 6]), [[4, 7], [6, 43]])
+Traceback (most recent call last):
+TypeError: m_a must be a list
+
+# if m_b is not a list
+>>> matrix_mul([[6, 7], [7, 6]], ([4, 7], [6, 43]))
+Traceback (most recent call last):
+TypeError: m_b must be a list
+
+# parenthesis issues for m_b
+>>> matrix_mul([[6, 7], [7, 6]], ([4, 7], [6, 43]])
+Traceback (most recent call last):
+SyntaxError: closing parenthesis ']' does not match opening parenthesis '('
+
+# parenthesis issues for m_a
+>>> matrix_mul(([6, 7], [7, 6]], [[4, 7], [6, 43]])
+Traceback (most recent call last):
+SyntaxError: closing parenthesis ']' does not match opening parenthesis '('
+
+# if m_a is not a list of lists
+>>> matrix_mul([[6, 7], (7, 6)], [[4, 7], [6, 43]])
+Traceback (most recent call last):
+TypeError: m_a must be a list of lists
+
+# if m_b is not a list of lists
+>>> matrix_mul([[6, 7], [7, 6]], [[4, 7], {6, 43}])
+Traceback (most recent call last):
+TypeError: m_b must be a list of lists
+
+# parenthesis issue for m_a
+>>> matrix_mul([[6, 7], [7, 6)], [[4, 7], [6, 43]])
+Traceback (most recent call last):
+SyntaxError: closing parenthesis ')' does not match opening parenthesis '['
+
+# parenthesis issue for m_b
+>>> matrix_mul([[6, 7], [7, 6]], [[4, 7], {6, 43]])
+Traceback (most recent call last):
+SyntaxError: closing parenthesis ']' does not match opening parenthesis '{'
+
+# if both are empty
+>>> matrix_mul([])
+Traceback (most recent call last):
+TypeError: matrix_mul() missing 1 required positional argument: 'm_b'
+
+# if m_a is empty
+>>> matrix_mul([[3, 7], [4, 7]])
+Traceback (most recent call last):
+TypeError: matrix_mul() missing 1 required positional argument: 'm_b'
+
+# empty m_a
+>>> matrix_mul([], [[1, 2], [3, 4]])
+Traceback (most recent call last):
+ValueError: m_a can't be empty
+
+# empty m_b
+>>> matrix_mul([[1, 2], [3, 4]], [])
+Traceback (most recent call last):
+ValueError: m_b can't be empty
+
+# if no arguments passed
+>>> matrix_mul()
+Traceback (most recent call last):
+TypeError: matrix_mul() missing 2 required positional arguments: 'm_a' and 'm_b'
+
+# if one element of m_a or m_b is a string, float, float(inf), exponential, float(nan)
+>>> matrix_mul([[1, 2], [3, 'a']], [[5, 6], [7, 8]])
+Traceback (most recent call last):
+TypeError: m_a should contain only integers or floats
+
+>>> matrix_mul([[1, 2], [3, 4]], [[5, 6], [7, 'b']])
+Traceback (most recent call last):
+TypeError: m_b should contain only integers or floats
+
+>>> matrix_mul([[1, 2], [3, 4]], [[5, 6], [7, float('inf')]])
+[[19, inf], [43, inf]]
+
+>>> matrix_mul([[1, 2], [3, 4]], [[5, 6], [7, 8e2]])
+[[19, 1606.0], [43, 3218.0]]
+
+>>> matrix_mul([[1, 2], [3, 4]], [[5, 6], [7, float('nan')]])
+[[19, nan], [43, nan]]
+
+# None
+>>> matrix_mul([[1, 2], [3, None]], [[5, 6], [7, 8]])
+Traceback (most recent call last):
+TypeError: m_a should contain only integers or floats
+
+>>> matrix_mul([[1, 2], [3, 4]], [[5, 6], [7, None]])
+Traceback (most recent call last):
+TypeError: m_b should contain only integers or floats
+
+# if a row is not of equal size with the rest
+>>> matrix_mul([[1, 2, 3], [4, 5], [6, 7, 8]], [[9, 10], [11, 12], [13, 14]])
+Traceback (most recent call last):
+TypeError: each row of m_a must be of the same size
+
+>>> matrix_mul([[1, 2], [3, 4]], [[6, 7, 5], [8, 9], [10, 11]])
+Traceback (most recent call last):
+TypeError: each row of m_b must be of the same size
+
+# if m_a and m_b cant be multiplied
+>>> matrix_mul([[1, 2], [3, 4]], [[5, 6, 7], [8, 9, 10]])
+[[21, 24, 27], [47, 54, 61]]
+
+# can't be multiplied
+>>> matrix_mul([[1, 2, 3], [3, 4, 5]], [[1, 2], [3, 4]])
+Traceback (most recent call last):
+ValueError: m_a and m_b can't be multiplied
