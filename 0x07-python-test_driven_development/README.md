@@ -8,3 +8,8 @@ The goal of this topic is to learn
 5. How to write documentation for each module and function
 6. What are the basic option flags to create tests
 7. How to find edge cases
+
+
+I learnt different ways of testing:
+1. unittest method
+2. doctest method
