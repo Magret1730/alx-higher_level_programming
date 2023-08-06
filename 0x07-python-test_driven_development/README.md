@@ -10,6 +10,6 @@ The goal of this topic is to learn
 7. How to find edge cases
 
 
-I learnt different ways of testing:
+I learnt different ways of testing
 1. unittest method
 2. doctest method
