@@ -1,0 +1,139 @@
+Importing module
+>>> import numpy as py
+>>> lazy_matrix_mul = __import__('101-lazy_matrix_mul').lazy_matrix_mul
+
+Tests
+# Normal tests
+>>> lazy_matrix_mul([[4, 5], [9, 4]], [[3, 1], [7, 54]])
+array([[ 47, 274],
+       [ 55, 225]])
+
+# negative values
+>>> lazy_matrix_mul([[1, -2], [-3, 4]], [[-1, 2], [3, -4]])
+array([[ -7,  10],
+       [ 15, -22]])
+
+large values
+>>> lazy_matrix_mul([[1e10, 2e10], [3e10, 4e10]], [[1e10, 2e10], [3e10, 4e10]])
+array([[7.0e+20, 1.0e+21],
+       [1.5e+21, 2.2e+21]])
+
+# rubbish input as special character
+>>> lazy_matrix_mul(@#$%)
+Traceback (most recent call last):
+SyntaxError: invalid syntax
+
+# if m_a is not a list
+>>> lazy_matrix_mul(([6, 7], [7, 6]), [[4, 7], [6, 43]])
+array([[ 66, 343],
+       [ 64, 307]])
+
+# if m_b is not a list
+>>> lazy_matrix_mul([[6, 7], [7, 6]], ([4, 7], [6, 43]))
+array([[ 66, 343],
+       [ 64, 307]])
+
+# parenthesis issues for m_b
+>>> lazy_matrix_mul([[6, 7], [7, 6]], ([4, 7], [6, 43]])
+Traceback (most recent call last):
+SyntaxError: closing parenthesis ']' does not match opening parenthesis '('
+
+# parenthesis issues for m_a
+>>> lazy_matrix_mul(([6, 7], [7, 6]], [[4, 7], [6, 43]])
+Traceback (most recent call last):
+SyntaxError: closing parenthesis ']' does not match opening parenthesis '('
+
+# if m_a is not a list of lists
+>>> lazy_matrix_mul([[6, 7], (7, 6)], [[4, 7], [6, 43]])
+array([[ 66, 343],
+       [ 64, 307]])
+
+# if m_b is not a list of lists
+>>> lazy_matrix_mul([[6, 7], [7, 6]], [[4, 7], {6, 43}])
+Traceback (most recent call last):
+TypeError: unsupported operand type(s) for *: 'int' and 'set'
+
+# parenthesis issue for m_a
+>>> lazy_matrix_mul([[6, 7], [7, 6)], [[4, 7], [6, 43]])
+Traceback (most recent call last):
+SyntaxError: closing parenthesis ')' does not match opening parenthesis '['
+
+# parenthesis issue for m_b
+>>> lazy_matrix_mul([[6, 7], [7, 6]], [[4, 7], {6, 43]])
+Traceback (most recent call last):
+SyntaxError: closing parenthesis ']' does not match opening parenthesis '{'
+
+# if both are empty
+>>> lazy_matrix_mul([])
+Traceback (most recent call last):
+TypeError: lazy_matrix_mul() missing 1 required positional argument: 'm_b'
+
+# if m_a is empty
+>>> lazy_matrix_mul([[3, 7], [4, 7]])
+Traceback (most recent call last):
+TypeError: lazy_matrix_mul() missing 1 required positional argument: 'm_b'
+
+# empty m_a
+>>> lazy_matrix_mul([], [[1, 2], [3, 4]])
+Traceback (most recent call last):
+ValueError: shapes (0,) and (2,2) not aligned: 0 (dim 0) != 2 (dim 0)
+
+# empty m_b
+>>> lazy_matrix_mul([[1, 2], [3, 4]], [])
+Traceback (most recent call last):
+ValueError: shapes (2,2) and (0,) not aligned: 2 (dim 1) != 0 (dim 0)
+
+# if no arguments passed
+>>> lazy_matrix_mul()
+Traceback (most recent call last):
+TypeError: lazy_matrix_mul() missing 2 required positional arguments: 'm_a' and 'm_b'
+
+# if one element of m_a or m_b is a string, float, float(inf), exponential, float(nan)
+>>> lazy_matrix_mul([[1, 2], [3, 'a']], [[5, 6], [7, 8]])
+Traceback (most recent call last):
+ValueError: data type must provide an itemsize
+
+>>> lazy_matrix_mul([[1, 2], [3, 4]], [[5, 6], [7, 'b']])
+Traceback (most recent call last):
+ValueError: data type must provide an itemsize
+
+>>> lazy_matrix_mul([[1, 2], [3, 4]], [[5, 6], [7, float('inf')]])
+array([[19., inf],
+       [43., inf]])
+
+>>> lazy_matrix_mul([[1, 2], [3, 4]], [[5, 6], [7, 8e2]])
+array([[  19., 1606.],
+       [  43., 3218.]])
+
+>>> lazy_matrix_mul([[1, 2], [3, 4]], [[5, 6], [7, float('nan')]])
+array([[19., nan],
+       [43., nan]])
+
+# None
+>>> lazy_matrix_mul([[1, 2], [3, None]], [[5, 6], [7, 8]])
+Traceback (most recent call last):
+TypeError: unsupported operand type(s) for *: 'NoneType' and 'int'
+
+>>> lazy_matrix_mul([[1, 2], [3, 4]], [[5, 6], [7, None]])
+Traceback (most recent call last):
+TypeError: unsupported operand type(s) for *: 'int' and 'NoneType'
+
+# if a row is not of equal size with the rest
+>>> lazy_matrix_mul([[1, 2, 3], [4, 5], [6, 7, 8]], [[9, 10], [11, 12], [13, 14]])
+array([list([1, 2, 3, 1, 2, 3, 1, 2, 3, 1, 2, 3, 1, 2, 3, 1, 2, 3, 1, 2, 3, 1, 2, 3, 1, 2, 3, 4, 5, 4, 5, 4, 5, 4, 5, 4, 5, 4, 5, 4, 5, 4, 5, 4, 5, 4, 5, 4, 5, 6, 7, 8, 6, 7, 8, 6, 7, 8, 6, 7, 8, 6, 7, 8, 6, 7, 8, 6, 7, 8, 6, 7, 8, 6, 7, 8, 6, 7, 8, 6, 7, 8, 6, 7, 8, 6, 7, 8]),
+       list([1, 2, 3, 1, 2, 3, 1, 2, 3, 1, 2, 3, 1, 2, 3, 1, 2, 3, 1, 2, 3, 1, 2, 3, 1, 2, 3, 1, 2, 3, 4, 5, 4, 5, 4, 5, 4, 5, 4, 5, 4, 5, 4, 5, 4, 5, 4, 5, 4, 5, 4, 5, 4, 5, 6, 7, 8, 6, 7, 8, 6, 7, 8, 6, 7, 8, 6, 7, 8, 6, 7, 8, 6, 7, 8, 6, 7, 8, 6, 7, 8, 6, 7, 8, 6, 7, 8, 6, 7, 8, 6, 7, 8, 6, 7, 8])],
+      dtype=object)
+
+>>> lazy_matrix_mul([[1, 2], [3, 4]], [[6, 7, 5], [8, 9], [10, 11]])
+Traceback (most recent call last):
+ValueError: shapes (2,2) and (3,) not aligned: 2 (dim 1) != 3 (dim 0)
+
+# if m_a and m_b cant be multiplied
+>>> lazy_matrix_mul([[1, 2], [3, 4]], [[5, 6, 7], [8, 9, 10]])
+array([[21, 24, 27],
+       [47, 54, 61]])
+
+# can't be multiplied
+>>> lazy_matrix_mul([[1, 2, 3], [3, 4, 5]], [[1, 2], [3, 4]])
+Traceback (most recent call last):
+ValueError: shapes (2,3) and (2,2) not aligned: 3 (dim 1) != 2 (dim 0)
