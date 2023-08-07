@@ -1,12 +1,12 @@
 #!/usr/bin/python3
 """
-empty class Rectangle that defines a rectangle
+A module for class Rectangle
 """
 
 
 class Rectangle:
     """
-    empty class Rectangle that defines a rectangle
+    A class Rectangle that defines a rectangle
     """
 
     def __init__(self, width=0, height=0):
@@ -30,6 +30,14 @@ class Rectangle:
 
     @width.setter
     def width(self, value):
+        """
+        property of width
+
+        Raises:
+            TypeError: if width is not an integer
+            ValueError: if width is less than zero
+        """
+
         if not isinstance(value, int):
             raise TypeError('width must be an integer')
         if value < 0:
@@ -42,6 +50,13 @@ class Rectangle:
 
     @height.setter
     def height(self, value):
+        """
+        property of height
+
+        Raises:
+            TypeError: if height is not an integer
+            ValueError: if height is less than zero
+        """
         if not isinstance(value, int):
             raise TypeError('height must be an integer')
         if value < 0:
