@@ -10,6 +10,13 @@ class Rectangle:
     """
 
     def __init__(self, width=0, height=0):
+        """Initializer
+
+        Args:
+            width - width
+            height - height
+        """
+
         self.__width = width
         self.__height = height
 
