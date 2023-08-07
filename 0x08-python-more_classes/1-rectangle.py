@@ -15,6 +15,10 @@ class Rectangle:
         Args:
             width - width
             height - height
+
+        Raises:
+            TypeError if attribute is not an integer
+            ValueError if attribute is less than 0
         """
 
         self.__width = width
