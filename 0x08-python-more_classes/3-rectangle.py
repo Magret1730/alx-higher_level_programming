@@ -78,9 +78,9 @@ class Rectangle:
     def __str__(self):
         """print the rectangle with the character #"""
 
-        rect = ""
         if self.__width == 0 or self.__height == 0:
-            print(rect)
+            return ""
+        rect = ""
         for i in range(self.__height):
             for j in range(self.__width):
                 rect = rect + '#'
