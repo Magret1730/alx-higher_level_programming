@@ -81,8 +81,9 @@ class Rectangle:
         rect = ""
         if self.__width == 0 or self.__height == 0:
             print(rect)
-        for _ in range(self.__height):
-            for _ in range(self.__width):
+        for i in range(self.__height):
+            for j in range(self.__width):
                 rect = rect + '#'
-            rect = rect + '\n'
-        return rect.rstrip('\n')
+            if i != (self.__height - 1):
+                rect = rect + '\n'
+        return rect
