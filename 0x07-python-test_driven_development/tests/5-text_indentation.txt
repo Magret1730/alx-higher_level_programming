@@ -48,7 +48,7 @@ TypeError: text_indentation() missing 1 required positional argument: 'text'
 # string without quotes
 >>> text_indentation(Good job Ogooluwa. You are the best.)
 Traceback (most recent call last):
-SyntaxError: invalid syntax. Perhaps you forgot a comma?
+SyntaxError: invalid syntax
 
 # for the delimeters in the question
 >>> text_indentation(".,?:")
