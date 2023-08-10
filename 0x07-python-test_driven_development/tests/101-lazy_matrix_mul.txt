@@ -2,6 +2,23 @@ Importing module
 >>> import numpy as py
 >>> lazy_matrix_mul = __import__('101-lazy_matrix_mul').lazy_matrix_mul
 
+# ALX test cases
+>>> lazy_matrix_mul(“Holberton”, [[5, 6], [7, 8]])
+Traceback (most recent call last):
+SyntaxError: invalid character in identifier
+
+>>> lazy_matrix_mul([[5, 6], [7, 8]],  “Holberton”)
+Traceback (most recent call last):
+SyntaxError: invalid character in identifier
+
+>>> lazy_matrix_mul([[5, “6”], [7, 8]], [[5, 6], [7, 8]])
+Traceback (most recent call last):
+SyntaxError: invalid character in identifier
+
+>>> lazy_matrix_mul([[5, 6], [7, 8]], [[5, “6”], [7, 8]])
+Traceback (most recent call last):
+SyntaxError: invalid character in identifier
+
 Tests
 # Normal tests
 >>> lazy_matrix_mul([[4, 5], [9, 4]], [[3, 1], [7, 54]])
