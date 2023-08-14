@@ -1,4 +1,4 @@
-Module
+Importing Module
 >>> BaseGeometry = __import__('7-base_geometry').BaseGeometry
 >>> bg = BaseGeometry()
 
@@ -8,6 +8,10 @@ area normal test
 Traceback (most recent call last):
 Exception: area() is not implemented
 
+>>> bg.area(5, 5)
+Traceback (most recent call last):
+TypeError: BaseGeometry.area() takes 1 positional argument but 3 were given
+
 integer_validator
 normal test
 >>> bg.integer_validator("name", 7)
@@ -15,4 +19,34 @@ normal test
 zero
 >>> bg.integer_validator("name", 0)
 Traceback (most recent call last):
-ValueError: name must be greater than 0 
+ValueError: name must be greater than 0
+
+>>> bg.integer_validator("name", -4)
+Traceback (most recent call last):
+ValueError: name must be greater than 0
+
+>>> bg.integer_validator("name", "John")
+Traceback (most recent call last):
+TypeError: name must be an integer
+
+doc
+>>> BaseGeometry.__doc__
+'A class with two public instance methods'
+
+>>> bg.__doc__
+'A class with two public instance methods'
+
+>>> bg.area.__doc__
+'raises Exception'
+
+>>> bg.integer_validator.__doc__
+'method that validates value, name is always a string'
+
+Args
+>>> bg.integer_validator("name")
+Traceback (most recent call last):
+TypeError: BaseGeometry.integer_validator() missing 1 required positional argument: 'value'
+
+>>> bg.integer_validator("name", 7, -9)
+Traceback (most recent call last):
+TypeError: BaseGeometry.integer_validator() takes 3 positional arguments but 4 were given
