@@ -9,3 +9,39 @@ normal test
 empty list
 >>> MyList.print_sorted([])
 []
+
+doc
+>>> MyList.__doc__
+'child class that inherits from class list'
+
+>>> MyList.print_sorted.__doc__
+'\n        public instance method that prints the list,\n        but sorted (ascending sort)\n        '
+
+type
+>>> type(MyList)
+<class 'type'>
+
+>>> type(MyList.print_sorted)
+<class 'function'>
+
+negative
+>>> MyList.print_sorted([3, -7, 0, 2, 8])
+[-7, 0, 2, 3, 8]
+
+>>> MyList.print_sorted([-3, -7, 0, -2, -8])
+[-8, -7, -3, -2, 0]
+
+same digits
+>>> MyList.print_sorted([3, 3, 3, 3])
+[3, 3, 3, 3]
+
+>>> MyList.print_sorted([3])
+[3]
+
+large numbers
+>>> MyList.print_sorted([1e456, float('inf'), float('nan')])
+[inf, inf, nan]
+
+decimals
+>>> MyList.print_sorted([7.8, -87, -1.2, 8.9999])
+[-87, -1.2, 7.8, 8.9999]
