@@ -25,10 +25,15 @@ class Student:
         # If attrs is a list of strings, only attribute names contained
         # in this list must be retrieved.
         # Otherwise, all attributes must be retrieved
-        new_dict = self.__dict__
-        if attrs is None:
-            return new_dict
+        if isinstance(attrs, list) and all(isinstance(attr, str) for attr in attrs):
+            new_dict = self.__dict__
+            if attrs is None:
+                return new_dict
+            else:
+                filtered_dict = {}
+                for attr in attrs:
+                    if attr in new_dict:
+                        filtered_dict[attr] = new_dict[attr]
+                return filtered_dict
         else:
-            for attr in attrs:
-                if attr in new_dict:
-                    return {attr: new_dict[attr]}
+            return self.__dict__
