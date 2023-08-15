@@ -1,7 +1,9 @@
 #!/usr/bin/python3
 """A function"""
 
+
 import json
+
 
 def class_to_json(obj):
     """
