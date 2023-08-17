@@ -52,6 +52,11 @@ class test_Base(unittest.TestCase):
         self.assertEqual([case.id for case in cases], list(range(1, ins + 1)))
     """
 
+    def test_id_zero(self):
+        """Test for id is zero"""
+        b1 = Base(0)
+        self.assertEqual(b1.id, 0)
+
 
 if __name__ == '__main__':
     unittest.main()
