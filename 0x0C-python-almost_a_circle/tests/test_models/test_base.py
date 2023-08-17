@@ -1,10 +1,14 @@
 #!/usr/bin/python3
 """Test cases for Python: Almost a circle project"""
 
+
 import unittest
 from models.base import Base
 
+
 class test_Base(unittest.TestCase):
+    """Test cases"""
+
     def test_id_provided(self):
         """Test for if id is provided"""
         b1 = Base(id=5)
@@ -45,7 +49,9 @@ class test_Base(unittest.TestCase):
         Test for large number of instances
         ins = 15000
         cases = [Base() for _ in range(ins)]
-        self.assertEqual([case.id for case in cases], list(range(1, ins + 1)))"""
+        self.assertEqual([case.id for case in cases], list(range(1, ins + 1)))
+    """
+
 
 if __name__ == '__main__':
     unittest.main()
