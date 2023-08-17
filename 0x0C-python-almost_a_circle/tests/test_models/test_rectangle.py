@@ -304,6 +304,193 @@ class Test_rectangle(unittest.TestCase):
             r1 = Rectangle(5, None)
             r1.display()
 
+    # str
+    def test_str_normal(self):
+        """Test for normal test"""
+        r1 = Rectangle(4, 6, 2, 1, 12)
+        self.assertEqual(str(r1), "[Rectangle] (12) 2/1 - 4/6")
+
+    def test_str_zero_id(self):
+        """Test for id zero"""
+        r1 = Rectangle(4, 6, 2, 1, 0)
+        self.assertEqual(str(r1), "[Rectangle] (0) 2/1 - 4/6")
+
+    def test_str_negative_values(self):
+        """Test for negative values"""
+        with self.assertRaises(ValueError):
+            r1 = Rectangle(-4, -6, -2, -1, 12)
+
+    def test_str_large_values(self):
+        """Test for large values"""
+        r1 = Rectangle(10000, 20000, 70000, 60000, 50000)
+        self.assertEqual(str(r1),
+                         "[Rectangle] (50000) 70000/60000 - 10000/20000")
+
+    """
+    def test_str_default_values(self):
+        Test for default values
+        r1 = Rectangle(4, 6)
+        self.assertEqual(str(r1), "[Rectangle] (1) 0/0 - 4/6")
+    """
+
+    def test_str_only_id(self):
+        """Test for only id"""
+        r1 = Rectangle(4, 6, id=5)
+        self.assertEqual(str(r1), "[Rectangle] (5) 0/0 - 4/6")
+
+    """
+    def test_str_only_width_height(self):
+        Test for only width and height
+        r1 = Rectangle(4, 6)
+        self.assertEqual(str(r1), "[Rectangle] (1) 0/0 - 4/6")
+    """
+
+    def test_str_zero_width_height(self):
+        """Test for zero width and height"""
+        r1 = Rectangle(0, 0, 2, 1, 12)
+        self.assertEqual(str(r1), "[Rectangle] (12) 2/1 - 0/0")
+
+    def test_str_large_id(self):
+        """Test for large id value"""
+        r1 = Rectangle(4, 6, 2, 1, 1000000)
+        self.assertEqual(str(r1), "[Rectangle] (1000000) 2/1 - 4/6")
+
+    def test_str_negative_x_y(self):
+        """Test for negative x and y"""
+        r1 = Rectangle(4, 6, -2, -3, 12)
+        self.assertEqual(str(r1), "[Rectangle] (12) -2/-3 - 4/6")
+
+    def test_str_large_width_height(self):
+        """Test for large width and height"""
+        r1 = Rectangle(1000000, 1000000, 2, 1, 12)
+        self.assertEqual(str(r1), "[Rectangle] (12) 2/1 - 1000000/1000000")
+
+    def test_str_max_dimensions(self):
+        """Test for maximum allowed dimensions"""
+        r1 = Rectangle(1000000000, 1000000000, 0, 0, 12)
+        self.assertEqual(str(r1),
+                         "[Rectangle] (12) 0/0 - 1000000000/1000000000")
+
+    def test_str_zero_dimensions(self):
+        """Test for zero width and height"""
+        r1 = Rectangle(0, 0, 2, 1, 12)
+        self.assertEqual(str(r1), "[Rectangle] (12) 2/1 - 0/0")
+
+    def test_str_negative_width(self):
+        """Test for negative width"""
+        with self.assertRaises(ValueError):
+            r1 = Rectangle(-4, 6, 2, 1, 12)
+
+    def test_str_negative_height(self):
+        """Test for negative height"""
+        with self.assertRaises(ValueError):
+            r1 = Rectangle(4, -6, 2, 1, 12)
+
+    def test_str_zero_x_y(self):
+        """Test for zero x and y"""
+        r1 = Rectangle(4, 6, 0, 0, 12)
+        self.assertEqual(str(r1), "[Rectangle] (12) 0/0 - 4/6")
+
+    def test_str_max_id(self):
+        """Test for maximum allowed id"""
+        r1 = Rectangle(4, 6, 2, 1, 999999999)
+        self.assertEqual(str(r1), "[Rectangle] (999999999) 2/1 - 4/6")
+
+    def test_str_large_dimensions(self):
+        """Test for large width and height"""
+        r1 = Rectangle(1000, 2000, 2, 1, 12)
+        self.assertEqual(str(r1), "[Rectangle] (12) 2/1 - 1000/2000")
+
+    def test_str_max_dimensions(self):
+        """Test for maximum allowed width and height"""
+        r1 = Rectangle(1000000, 1000000, 2, 1, 12)
+        self.assertEqual(str(r1), "[Rectangle] (12) 2/1 - 1000000/1000000")
+
+    def test_str_float_dimensions(self):
+        """Test for floating-point width and height"""
+        with self.assertRaises(TypeError):
+            r1 = Rectangle(4.5, 6.7, 2, 1, 12)
+
+    def test_str_string_x_y(self):
+        """Test for string x and y"""
+        with self.assertRaises(TypeError):
+            r1 = Rectangle(4, 6, "x", "y", 12)
+
+    def test_str_none_x_y(self):
+        """Test for None x and y"""
+        with self.assertRaises(TypeError):
+            r1 = Rectangle(4, 6, None, None, 12)
+
+    def test_str_negative_x_y(self):
+        """Test for negative x and y"""
+        with self.assertRaises(ValueError):
+            r1 = Rectangle(4, 6, -2, -1, 12)
+
+    def test_str_zero_width(self):
+        """Test for zero width"""
+        r1 = Rectangle(0, 6, 2, 1, 12)
+        self.assertEqual(str(r1), "[Rectangle] (12) 2/1 - 0/6")
+
+    def test_str_zero_height(self):
+        """Test for zero height"""
+        r1 = Rectangle(4, 0, 2, 1, 12)
+        self.assertEqual(str(r1), "[Rectangle] (12) 2/1 - 4/0")
+
+    def test_str_zero_width_height(self):
+        """Test for zero width and height"""
+        r1 = Rectangle(0, 0, 2, 1, 12)
+        self.assertEqual(str(r1), "[Rectangle] (12) 2/1 - 0/0")
+
+    def test_str_large_id(self):
+        """Test for large id value"""
+        r1 = Rectangle(4, 6, 2, 1, 1000000000)
+        self.assertEqual(str(r1), "[Rectangle] (1000000000) 2/1 - 4/6")
+
+    def test_str_large_values(self):
+        """Test for large width and height values"""
+        r1 = Rectangle(10000, 20000, 70000, 60000, 50000)
+        self.assertEqual(str(r1),
+                         "[Rectangle] (50000) 70000/60000 - 10000/20000")
+
+    def test_str_no_x_y(self):
+        """Test for no x and y values"""
+        r1 = Rectangle(4, 6, id=12)
+        self.assertEqual(str(r1), "[Rectangle] (12) 0/0 - 4/6")
+
+    def test_str_negative_width_height(self):
+        """Test for negative width and height"""
+        with self.assertRaises(ValueError):
+            r1 = Rectangle(-4, -6, 2, 1, 12)
+
+    def test_str_large_numbers(self):
+        """Test for large width and height numbers"""
+        r1 = Rectangle(1000, 10000, 7000, 6000, 50000)
+        self.assertEqual(str(r1), "[Rectangle] (50000) 7000/6000 - 1000/10000")
+
+    def test_str_strings(self):
+        """Test for string values"""
+        with self.assertRaises(TypeError):
+            r1 = Rectangle("hello", "world", 2, 1, 12)
+
+    def test_str_none(self):
+        """Test for None values"""
+        with self.assertRaises(TypeError):
+            r1 = Rectangle(None, None, 2, 1, 12)
+
+    def test_str_inf_nan(self):
+        """Test for inf and nan values"""
+        with self.assertRaises(TypeError):
+            r1 = Rectangle(float('inf'), float('nan'), 2, 1, 12)
+
+    def test_str_complex_spaces_exponential(self):
+        """Test for complex numbers, spaces, and exponential notation"""
+        with self.assertRaises(TypeError):
+            r2 = Rectangle(3+2j, 4-5j, 0, 0, 13)
+        with self.assertRaises(TypeError):
+            r3 = Rectangle(1.23e5, 6.78e-2, 0, 0, 14)
+        with self.assertRaises(TypeError):
+            r4 = Rectangle('invalid', 'invalid', 'invalid', 'invalid', 15)
+
 
 if __name__ == "__main__":
     unittest.main()

@@ -93,3 +93,8 @@ class Rectangle(Base):
             if i != (self.__height - 1):
                 rect = rect + '\n'
         print(rect)
+
+    def __str__(self):
+        """returns [Rectangle] (<id>) <x>/<y> - <width>/<height>"""
+        return "[Rectangle] ({}) {}/{} - {}/{}" \
+            .format(self.id, self.__x, self.__y, self.__width, self.__height)
