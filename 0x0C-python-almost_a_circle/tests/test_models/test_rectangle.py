@@ -187,7 +187,8 @@ class Test_rectangle(unittest.TestCase):
         r1 = Rectangle(4, 6)
         r1.display()
         sys.stdout = sys.__stdout__
-        self.assertEqual(captured_output.getvalue().strip(), expected_output.strip())
+        self.assertEqual(captured_output.getvalue().strip(),
+                         expected_output.strip())
 
     def test_display_zero_width(self):
         """Test display with width of 0"""
@@ -302,7 +303,6 @@ class Test_rectangle(unittest.TestCase):
         with self.assertRaises(TypeError):
             r1 = Rectangle(5, None)
             r1.display()
-
 
 
 if __name__ == "__main__":
