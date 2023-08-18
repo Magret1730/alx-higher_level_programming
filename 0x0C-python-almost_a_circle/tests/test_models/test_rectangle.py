@@ -540,7 +540,7 @@ class Test_rectangle(unittest.TestCase):
         with self.assertRaises(TypeError):
             r1 = Rectangle(10, 10, 10, 10, 1, 7, 8)
 
-    # kwargs 
+    # kwargs
     def test_kwargs_normal_all(self):
         """Normal test with all keys"""
         r1 = Rectangle(x=1, height=2, y=3, width=4, id=1876)
@@ -566,7 +566,6 @@ class Test_rectangle(unittest.TestCase):
         self.assertEqual(str(r1), "[Rectangle] (7896) 10/10 - 10/1")
         r1.update(y=1, width=2, x=3, id=89)
         self.assertEqual(str(r1), "[Rectangle] (89) 3/1 - 2/1")
-
 
 
 if __name__ == "__main__":
