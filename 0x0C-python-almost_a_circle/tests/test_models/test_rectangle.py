@@ -329,7 +329,7 @@ class Test_rectangle(unittest.TestCase):
     def test_str_default_values(self):
         """Test for default values"""
         r1 = Rectangle(4, 6)
-        self.assertEqual(str(r1), "[Rectangle] (39) 0/0 - 4/6")
+        self.assertEqual(str(r1), "[Rectangle] (40) 0/0 - 4/6")
 
     def test_str_only_id(self):
         """Test for only id"""
@@ -339,7 +339,7 @@ class Test_rectangle(unittest.TestCase):
     def test_str_only_width_height(self):
         """Test for only width and height"""
         r1 = Rectangle(4, 6)
-        self.assertEqual(str(r1), "[Rectangle] (40) 0/0 - 4/6")
+        self.assertEqual(str(r1), "[Rectangle] (41) 0/0 - 4/6")
 
     def test_str_zero_width_height(self):
         """Test for zero width and height"""
@@ -529,16 +529,44 @@ class Test_rectangle(unittest.TestCase):
         with self.assertRaises(ValueError):
             r1 = Rectangle(4, 6, -2, -1, 12)
 
-    # update
+    # update_args
     def test_update_normal(self):
         """Normal test"""
         r1 = Rectangle(10, 10, 10, 10)
-        self.assertEqual(str(r1), "[Rectangle] (41) 10/10 - 10/10")
+        self.assertEqual(str(r1), "[Rectangle] (42) 10/10 - 10/10")
 
     def test_update_more_args(self):
         """More than required args"""
         with self.assertRaises(TypeError):
             r1 = Rectangle(10, 10, 10, 10, 1, 7, 8)
+
+    # kwargs 
+    def test_kwargs_normal_all(self):
+        """Normal test with all keys"""
+        r1 = Rectangle(x=1, height=2, y=3, width=4, id=1876)
+        self.assertEqual(str(r1), "[Rectangle] (1876) 1/3 - 4/2")
+        self.assertEqual(r1.x, 1)
+        self.assertEqual(r1.y, 3)
+        self.assertEqual(r1.height, 2)
+        self.assertEqual(r1.width, 4)
+        self.assertEqual(r1.id, 1876)
+
+    def test_kwargs_height(self):
+        """Height"""
+        r1 = Rectangle(width=1, height=1)
+        self.assertEqual(str(r1), "[Rectangle] (38) 0/0 - 1/1")
+        self.assertEqual(r1.width, 1)
+        self.assertEqual(r1.height, 1)
+
+    def test_kwargs_print_all(self):
+        """Test for print"""
+        r1 = Rectangle(10, 10, 10, 10, 7896)
+        self.assertEqual(str(r1), "[Rectangle] (7896) 10/10 - 10/10")
+        r1.update(height=1)
+        self.assertEqual(str(r1), "[Rectangle] (7896) 10/10 - 10/1")
+        r1.update(y=1, width=2, x=3, id=89)
+        self.assertEqual(str(r1), "[Rectangle] (89) 3/1 - 2/1")
+
 
 
 if __name__ == "__main__":
