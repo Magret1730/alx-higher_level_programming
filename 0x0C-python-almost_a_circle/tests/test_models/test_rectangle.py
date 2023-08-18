@@ -491,6 +491,48 @@ class Test_rectangle(unittest.TestCase):
         with self.assertRaises(TypeError):
             r4 = Rectangle('invalid', 'invalid', 'invalid', 'invalid', 15)
 
+    # Display #1
+    def test_display_large_offsets(self):
+        """Test with large x and y"""
+        r1 = Rectangle(4, 2, 8, 5)
+        captured_output = StringIO()
+        sys.stdout = captured_output
+        r1.display()
+        expected_output = "\n\n\n\n\n        ####\n        ####\n"
+        self.assertEqual(captured_output.getvalue(), expected_output)
+
+    def test_display_zero_x_non_zero_y(self):
+        """Test with zero y"""
+        r1 = Rectangle(3, 3, 0, 2)
+        captured_output = StringIO()
+        sys.stdout = captured_output
+        r1.display()
+        expected_output = "\n\n###\n###\n###\n"
+        self.assertEqual(captured_output.getvalue(), expected_output)
+
+    def test_display_non_zero_x_zero_y(self):
+        """Test with zero x"""
+        r1 = Rectangle(3, 3, 2, 0)
+        captured_output = StringIO()
+        sys.stdout = captured_output
+        r1.display()
+        expected_output = "  ###\n  ###\n  ###\n"
+        self.assertEqual(captured_output.getvalue(), expected_output)
+
+    def test_display_without_offsets(self):
+        """Test with no offsets"""
+        r1 = Rectangle(3, 2)
+        captured_output = StringIO()
+        sys.stdout = captured_output
+        r1.display()
+        expected_output = "###\n###\n"
+        self.assertEqual(captured_output.getvalue(), expected_output)
+
+    def test_display_negative_offsets(self):
+        """Test for negative x and y"""
+        with self.assertRaises(ValueError):
+            r1 = Rectangle(4, 6, -2, -1, 12)
+
 
 if __name__ == "__main__":
     unittest.main()

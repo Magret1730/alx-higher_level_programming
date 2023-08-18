@@ -87,12 +87,14 @@ class Rectangle(Base):
     def display(self):
         """ prints in stdout the Rectangle instance with the character #"""
         rect = ""
-        for i in range(self.__height):
-            for j in range(self.__width):
-                rect += "#"
-            if i != (self.__height - 1):
-                rect = rect + '\n'
-        print(rect)
+        for i in range(self.__y):
+            rect += '\n'
+        for j in range(self.__height):
+            rect += ' ' * self.__x + '#' * self.__width + '\n'
+        # rect += "#"
+        # if i != (self.__height - 1):
+        # rect = rect + '\n'
+        print(rect, end="")
 
     def __str__(self):
         """returns [Rectangle] (<id>) <x>/<y> - <width>/<height>"""
