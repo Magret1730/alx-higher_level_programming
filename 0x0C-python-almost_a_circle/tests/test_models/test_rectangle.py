@@ -326,24 +326,20 @@ class Test_rectangle(unittest.TestCase):
         self.assertEqual(str(r1),
                          "[Rectangle] (50000) 70000/60000 - 10000/20000")
 
-    """
     def test_str_default_values(self):
-        Test for default values
+        """Test for default values"""
         r1 = Rectangle(4, 6)
-        self.assertEqual(str(r1), "[Rectangle] (1) 0/0 - 4/6")
-    """
+        self.assertEqual(str(r1), "[Rectangle] (39) 0/0 - 4/6")
 
     def test_str_only_id(self):
         """Test for only id"""
         r1 = Rectangle(4, 6, id=5)
         self.assertEqual(str(r1), "[Rectangle] (5) 0/0 - 4/6")
 
-    """
     def test_str_only_width_height(self):
-        Test for only width and height
+        """Test for only width and height"""
         r1 = Rectangle(4, 6)
-        self.assertEqual(str(r1), "[Rectangle] (1) 0/0 - 4/6")
-    """
+        self.assertEqual(str(r1), "[Rectangle] (40) 0/0 - 4/6")
 
     def test_str_zero_width_height(self):
         """Test for zero width and height"""
@@ -532,6 +528,17 @@ class Test_rectangle(unittest.TestCase):
         """Test for negative x and y"""
         with self.assertRaises(ValueError):
             r1 = Rectangle(4, 6, -2, -1, 12)
+
+    # update
+    def test_update_normal(self):
+        """Normal test"""
+        r1 = Rectangle(10, 10, 10, 10)
+        self.assertEqual(str(r1), "[Rectangle] (41) 10/10 - 10/10")
+
+    def test_update_more_args(self):
+        """More than required args"""
+        with self.assertRaises(TypeError):
+            r1 = Rectangle(10, 10, 10, 10, 1, 7, 8)
 
 
 if __name__ == "__main__":
