@@ -18,6 +18,16 @@ class Test_rectangle(unittest.TestCase):
         self.assertEqual(r1.x, 7)
         self.assertEqual(r1.y, 6)
 
+    def test_float(self):
+        """Float values"""
+        with self.assertRaises(TypeError):
+            r1 = Rectangle(3.5, 6.7, 8.7, 9.8, 900.4)
+
+    def test_complex(self):
+        """Test for complex numbers"""
+        with self.assertRaises(TypeError):
+            r1 = Rectangle(3+2j, 4-5j, 0+4j, 0+5j, 13+7j)
+
     def test_negative_values(self):
         """Negative values test"""
         with self.assertRaises(ValueError):
@@ -329,7 +339,7 @@ class Test_rectangle(unittest.TestCase):
     def test_str_default_values(self):
         """Test for default values"""
         r1 = Rectangle(4, 6)
-        self.assertEqual(str(r1), "[Rectangle] (40) 0/0 - 4/6")
+        self.assertEqual(str(r1), "[Rectangle] (78) 0/0 - 4/6")
 
     def test_str_only_id(self):
         """Test for only id"""
@@ -339,7 +349,7 @@ class Test_rectangle(unittest.TestCase):
     def test_str_only_width_height(self):
         """Test for only width and height"""
         r1 = Rectangle(4, 6)
-        self.assertEqual(str(r1), "[Rectangle] (41) 0/0 - 4/6")
+        self.assertEqual(str(r1), "[Rectangle] (79) 0/0 - 4/6")
 
     def test_str_zero_width_height(self):
         """Test for zero width and height"""
@@ -533,7 +543,7 @@ class Test_rectangle(unittest.TestCase):
     def test_update_normal(self):
         """Normal test"""
         r1 = Rectangle(10, 10, 10, 10)
-        self.assertEqual(str(r1), "[Rectangle] (42) 10/10 - 10/10")
+        self.assertEqual(str(r1), "[Rectangle] (82) 10/10 - 10/10")
 
     def test_update_more_args(self):
         """More than required args"""
@@ -554,7 +564,7 @@ class Test_rectangle(unittest.TestCase):
     def test_kwargs_height(self):
         """Height"""
         r1 = Rectangle(width=1, height=1)
-        self.assertEqual(str(r1), "[Rectangle] (38) 0/0 - 1/1")
+        self.assertEqual(str(r1), "[Rectangle] (76) 0/0 - 1/1")
         self.assertEqual(r1.width, 1)
         self.assertEqual(r1.height, 1)
 
@@ -566,6 +576,94 @@ class Test_rectangle(unittest.TestCase):
         self.assertEqual(str(r1), "[Rectangle] (7896) 10/10 - 10/1")
         r1.update(y=1, width=2, x=3, id=89)
         self.assertEqual(str(r1), "[Rectangle] (89) 3/1 - 2/1")
+
+    # others
+    def test_no_args(self):
+        """Test for no arguments"""
+        with self.assertRaises(TypeError):
+            Rectangle()
+
+    def test_one_arg(self):
+        """Test for one argument"""
+        with self.assertRaises(TypeError):
+            Rectangle(2)
+
+    def test_two_args(self):
+        """Test for two arguments"""
+        r1 = Rectangle(10, 2)
+        r2 = Rectangle(2, 10)
+        self.assertEqual(r1.id, r2.id - 1)
+
+    def test_more_than_five_args(self):
+        """Test for more than requiredarguments"""
+        with self.assertRaises(TypeError):
+            Rectangle(1, 2, 3, 4, 5, 6)
+
+    # attribute errors
+    def test_width_private(self):
+        """Test for private instance attribute width"""
+        with self.assertRaises(AttributeError):
+            print(Rectangle(6, 6, 1, 1, 178).__width)
+
+    def test_height_private(self):
+        """Test for private instance attribute height"""
+        with self.assertRaises(AttributeError):
+            print(Rectangle(6, 6, 1, 1, 178).__height)
+
+    def test_x_private(self):
+        """Test for private instance attribute x"""
+        with self.assertRaises(AttributeError):
+            print(Rectangle(6, 6, 1, 1, 178).__x)
+
+    def test_y_private(self):
+        """Test for private instance attribute y"""
+        with self.assertRaises(AttributeError):
+            print(Rectangle(6, 6, 1, 1, 178).__y)
+
+    # setters
+    def test_width_getter(self):
+        """Test for getter width"""
+        r = Rectangle(9, 9, 9, 9, 187)
+        self.assertEqual(9, r.width)
+
+    def test_width_setter(self):
+        """Test for setter width"""
+        r = Rectangle(9, 9, 9, 9, 187)
+        r.width = 18
+        self.assertEqual(18, r.width)
+
+    def test_height_getter(self):
+        """Test for getter height"""
+        r = Rectangle(9, 9, 9, 9, 187)
+        self.assertEqual(9, r.height)
+
+    def test_height_setter(self):
+        """Test for setter height"""
+        r = Rectangle(9, 9, 9, 9, 187)
+        r.height = 10
+        self.assertEqual(10, r.height)
+
+    def test_x_getter(self):
+        """Test for getter x"""
+        r = Rectangle(9, 9, 9, 9, 187)
+        self.assertEqual(9, r.x)
+
+    def test_x_setter(self):
+        """Test for setter x"""
+        r = Rectangle(9, 9, 9, 9, 187)
+        r.x = 10
+        self.assertEqual(10, r.x)
+
+    def test_y_getter(self):
+        """Test for getter y"""
+        r = Rectangle(9, 9, 9, 9, 187)
+        self.assertEqual(9, r.x)
+
+    def test_y_setter(self):
+        """Test for setter y"""
+        r = Rectangle(9, 9, 9, 9, 187)
+        r.y = 10
+        self.assertEqual(10, r.y)
 
 
 if __name__ == "__main__":
