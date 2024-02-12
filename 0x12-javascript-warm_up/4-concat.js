@@ -1,4 +1,3 @@
 #!/usr/bin/node
 const args = process.argv.slice(2);
-const newSentence = args.join(' is ');
-console.log(newSentence);
+console.log(args[0] + ' is ' + args[1]);
