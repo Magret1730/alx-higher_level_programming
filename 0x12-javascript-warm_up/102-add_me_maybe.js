@@ -1,9 +1,11 @@
 #!/usr/bin/node
-function addMeMaybe(number, theFunction) {
+function addMeMaybe (number, theFunction) {
   theFunction(number + 1);
 }
 
-/*module.exports = {
+/*
+module.exports = {
   addMeMaybe: addMeMaybe
-};*/
+};
+*/
 exports.addMeMaybe = addMeMaybe;
