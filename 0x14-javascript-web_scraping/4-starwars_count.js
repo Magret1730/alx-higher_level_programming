@@ -5,9 +5,9 @@
 
 const request = require('request');
 const characterId = 18;
-const StarWarAPIEndpoint = 'https://swapi-api.alx-tools.com/api/films/';
+const apiURL = process.argv[2];
 
-request(StarWarAPIEndpoint, (error, response, body) => {
+request(apiURL, (error, response, body) => {
   if (error) {
     console.log(error);
   }
